@@ -37,7 +37,7 @@ wiki的主要来源包括以下：
 *   vlc-arch-guide
 *   vlc-dev-guide
 
-分别对应于上面的[项目内容](https://github.com/hustcalm/VLCWikiForChinese#%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9)。
+分别对应于上面的[项目内容](https://github.com/vlcchina/VLCWikiForChinese#%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9)。
 
 按照wiki中超链接的组织结构，建立文件夹的相应结构，从顶层目录到最底层目录，最底层目录对应超链接的最底层，在最底层目录放置翻译的源文件，即xx.md。
 
@@ -48,7 +48,7 @@ wiki的主要来源包括以下：
 
 1、clone项目
 
-    git clone git@github.com:hustcalm/VLCWikiForChinese.git
+    git clone git@github.com:vlcchina/VLCWikiForChinese.git
 
 2、根据自己展开的工作建立分支，比如enjoythearchitecture的翻译，可以操作如下：
 

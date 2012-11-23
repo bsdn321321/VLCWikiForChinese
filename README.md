@@ -36,8 +36,9 @@ wiki的主要来源包括以下：
 *   vlc-modules-howto
 *   vlc-arch-guide
 *   vlc-dev-guide
+*   vlc-wiki-utils
 
-分别对应于上面的[项目内容](https://github.com/vlcchina/VLCWikiForChinese#%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9)。
+分别对应于上面的[项目内容](https://github.com/vlcchina/VLCWikiForChinese#%E9%A1%B9%E7%9B%AE%E5%86%85%E5%AE%B9)。最后的vlc-wiki-utils存放翻译过程中需要的一些共用信息，比如文件头信息，也可以share一些教程，比如markdown的学习或者自己翻译的一些心得体会。
 
 按照wiki中超链接的组织结构，建立文件夹的相应结构，从顶层目录到最底层目录，最底层目录对应超链接的最底层，在最底层目录放置翻译的源文件，即xx.md。
 

@@ -1,0 +1,263 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
+
+<style type="text/css"></style>
+
+
+<h2><center> Win32编译方法</center></h2>
+
+<ul>
+<li><p>1<a href="#BuildingMethods">组建方法</a></p></li>
+<li><p>2<a href="#Obtainingtoolchain">获取工具�?</a></p>
+
+<ul>
+<li>2.1  <a href="#21">编译器和二进制工�?</a></li>
+<li>2.2  <a href="#22">开发工�?</a></li>
+<li>2.3  <a href="#23">三重主机</a></li>
+</ul></li>
+<li>3 <a href="#getsource">获取源代�?</a></li>
+<li>4 <a href="#gotodir">进入VLC目录</a></li>
+<li>5 <a href="#prepare3rd">准备第三方库</a>
+<ul>
+<li>5.1  <a href="#51">64位linux</a></li>
+<li>5.2  <a href="#52">修复contrib路径</a></li>
+<li>5.3  <a href="#53">返回到VLC目录</a></li>
+</ul></li>
+<li>6 <a href="#compilecinfig">配置编译环境</a>
+<ul>
+<li>6.1  <a href="#61">自动引导</a></li>
+<li>6.2  <a href="#62">配置</a></li>
+</ul></li>
+<li>7 <a href="#buildvlc">组建VLC</a></li>
+<li>8<a href="#packaging">打包VLC</a></li>
+</ul>
+
+<hr  />
+
+<h2 id="BuildingMethods">组建方法</h2>
+
+<hr  />
+
+<blockquote>
+  <p>如果你想从源代码编译VLC ，有以下几种方式供你选择：在linux上用Mingw交叉编译，包含工具链  首选的方法（使用交叉编译）。在Windows上，你应该在虚拟机中完成�?
+  MSYS+ MinGW的本机编�?  使用MSys编译   本机的编译方法�? 在Microsoft Windows下，MSYS是一个编译Unixish项目的很小的编译环境�?
+  使用cygwin本机编译   用Cygwin编译    建立使用cygwin的编译环境，容易出错、而且速度很慢</p>
+</blockquote>
+
+<h2 id="Obtainingtoolchain">获取工具�?</h2>
+
+<hr  />
+
+<blockquote>
+  <p>友情提示：以下仅适用于linux的交叉编�?</p>
+</blockquote>
+
+<h3 id="21">编译器和二进制工�?</h3>
+
+<blockquote>
+  <p>为了在Windows�?32位或�?64位系统）上编译VLC源代码，我们需�? Mingw-w64 工具�?</p>
+</blockquote>
+
+<ul>
+<li>debian/ubuntu :执行命令  apt-get install gcc-mingw-w64-i686
+(在ubuntu上你必须首先在wheezy和above上找到这些包)
+VLC�?2.0.x及以下版本使用的是旧版的mingw32 工具，它仅支�?32位windows系统，如果你使用mingw-w64 有问题的话，你可以尝试使用mingw32代替�?</li>
+<li>Debian/Ubuntu: 执行命令 apt-get install gcc-mingw32 mingw32-binutils. </li>
+</ul>
+
+<blockquote>
+  <p>需要注意的是mingw32的版本至少为3.17debian是不会提供的，你可以在此获取<a href="http://people.videolan.org/%7Ejb/debian/mingw32-runtime_3.17.0-0videolan_all.deb">mingw32-runtime-3.17</a></p>
+</blockquote>
+
+<ul>
+<li>Gentoo 用户可以 emerge crossdev &amp;&amp; crossdev mingw32 </li>
+<li>ArchLinux 用户可以 pacman -S mingw32-gcc </li>
+<li>Fedora 用户应该阅读 <a href="http://www.wikivideolan.org">Win32 Compile UnderFedora</a> </li>
+<li>其他 Linux 系统应该尝试这里 <a href="http://www.mingw.org/wiki/LinuxCrossMinGW">http://www.mingw.org/wiki/ LinuxCrossMinGW</a> </li>
+<li>使用 MSYS+MINGW 本机编译, 应该阅读手册 <a href="http://wiki.videolan.org/Win32CompileMSYSNew">documentation</a> </li>
+<li>使用 Cygwin 本机编译, 应该阅读手册 <a href="http://wiki.videolan.org/Win32CompileCygwinNew">documentation</a> </li>
+</ul>
+
+<h3 id="22">开发工�?</h3>
+
+<blockquote>
+  <p>你应该需要以下：</p>
+</blockquote>
+
+<ul>
+<li>lua5.1</li>
+<li>所有的autotools ：libtool /automake,autoconf,autopoint,make,gettext</li>
+<li>git</li>
+<li>pkg-config</li>
+<li>subvision</li>
+<li>如果你想重新组建所有的贡献，还需要cmake,cvs</li>
+<li>zip (创建.zip�?)，p7zip [创建.7z包]，niss[�?.exe文件自动安装]，bzip2 [用于预生成]</li>
+</ul>
+
+<h2>#</h2>
+
+<h3 id="23">三重主机</h3>
+
+<blockquote>
+  <p>下面的一些命令示例中包括工具链的标识。这个值是必不可少的：它指示建立的系统，在Windows下正确的使用工具和编译程序的。如果没有该值时，系统将为Linux下执行一个本地编译（或任何能在您的计算机上运行的）。一个不正确的值，构建就会失败</p>
+  
+  <p>这是被称为主机三重峰，虽然在使用 Mingw 情况下比三重更重要的是一对。确切的值取决于你安装的工具。值得注意的是，在Debian / Ubuntu，这些值必须使用：</p>
+</blockquote>
+
+<ul>
+<li>i686-w64-mingw32 for Windows 32-bits, using the Mingw-w64 toolchain </li>
+<li>x86_64-w64-mingw32 for Windows 64-bits, using the Mingw-w64 toolchain </li>
+<li>i586-mingw32msvc for Windows 32-bits, using the Mingw32 toolchain </li>
+</ul>
+
+<p>再一次强调，你必须在下面的命令段中替换一些�?</p>
+
+<h2 id="getsource">获取源代�?</h2>
+
+<hr  />
+
+<p><code>$ git clone git://git.videolan.org/vlc.git vlc
+</code></p>
+
+<p>See <a>Git</a> for more information.</p>
+
+<h2 id="gotodir">进入VLC目录</h2>
+
+<hr  />
+
+<p><code>
+$ cd vlc
+</code></p>
+
+<h2 id="prepare3rd">准备第三方库</h2>
+
+<hr  />
+
+<p>在编译VLC之前，你需要很多其他的函数库，这里展示如何获得它们�?</p>
+
+<p><code>$ mkdir -p contrib/win32</code></p>
+
+<p><code>$ cd contrib/win32</code></p>
+
+<p><code>$ ../bootstrap --host=i586-mingw32msvc</code> </p>
+
+<p><code>$ make prebuilt</code></p>
+
+<p>如果你想自己重新组建所有人贡献的函数库，你有足够的冒险精神、有足够的时间的话：</p>
+
+<p><code># apt-get install subversion yasm cvs cmake
+</code></p>
+
+<p><code>$ mkdir -p contrib/win32</code>
+ <code>$ cd contrib/win32</code></p>
+
+<p><code>$ ../bootstrap --host=i586-mingw32msvc</code></p>
+
+<p><code>$ make fetch</code></p>
+
+<p><code>$ make</code></p>
+
+<h3 id="51">linux 64-bit</h3>
+
+<p>如果你是64位linux系统，那么你应该删除一些文件，或者安�? lib32 安装�?(ia32-libs, multilibs, etc...) </p>
+
+<p><code>$ rm -f ../i586-mingw32msvc/bin/moc ../i586-mingw32msvc/bin/uic ../i586-mingw32msvc/bin/rcc
+</code></p>
+
+<p>除此之外，安�? <code>qt4-tools</code> �?</p>
+
+<h3 id="32">修复您的contrib路径</h3>
+
+<p>如果你的 Mingw prefix 不是 i586-mingw32msvc (你不是在 Debian /Ubuntu), 那么需要创建一个符号链接来贡献�? </p>
+
+<p><code>$ ln -sf ../i586-mingw32msvc ../i486-mingw32
+</code></p>
+
+<h3 id="53">返回到VLC源代码目�?</h3>
+
+<p><code>$ cd -</code></p>
+
+<h2 id="compilecinfig">配置编译环境</h2>
+
+<hr  />
+
+<h3 id="61">自动引导</h3>
+
+<p>首先，准备生成树结构</p>
+
+<p><code>$ ./bootstrap</code></p>
+
+<h3 id="62">配置</h3>
+
+<p>现在你可以使�? ./configure 脚本对编译环境进行配置了
+创建一个子文件�?
+<code>$ mkdir win32 &amp;&amp; cd win32
+</code>
+使用标准的配�?
+<code>$ ../extras/package/win32/configure.sh --host=i586-mingw32msvc
+</code>
+友情提示：使用你�? Xcompiling 前缀，就�? <code>i486-mingw32</code></p>
+
+<p>或者，您可以手动运行配置：</p>
+
+<p><code>$ ../configure --host=i586-mingw32msvc
+</code></p>
+
+<p>请查�? '../configure --help' 获取更多帮助信息</p>
+
+<h2 id="buildvlc">组建VLC</h2>
+
+<hr  />
+
+<p>如果你配置成功的话，运行以下命令来组建VLC�?</p>
+
+<p><code>$ make</code></p>
+
+<h2 id="packaging"> 打包VLC</h2>
+
+<hr  />
+
+<p>一旦编译完成后，你就可以建立基于本机的VLC包，使用以下<code>make rules</code>�?</p>
+
+<table border="1">
+<tr border="1">
+<td width="40%">命令</td>
+<td width="60%">描述</td>
+</tr>
+<tr>
+<td>make package-win-common</td>
+<td>创建一个包含所有二进制代码的文件名�? vlc-x.x.x 的文件。你可以直接在目录下运行VLC程序�? </td>
+</tr>
+<tr>
+<td>make package-win-strip (might be package-win32-strip) 
+</td>
+<td>同上，但是它不包含二进制代码(也就是说, 它占用最小的空间、并且不能使用调试器). 
+</td>
+</tr>
+<tr>
+<td>make package-win32-7zip 
+</td>
+<td>
+同上，但是它会打包成 7z 格式的文�?.
+</td>
+</tr>
+<tr>
+<td>make package-win32-zip 
+</td>
+<td>同上�? 但是它会打包�? zip 格式的文�?. 
+</td>
+</tr>
+<tr>
+<td>make package-win32 
+</td>
+<td>同上，但是它会产生一个自动安装文件，你必须在默认的路径下已经对这个工程安装过 NSIS �? 
+</td>
+</tr>
+</table>
+
+<p>至此，你已经完成了VLC的编译了！Good Luck �?</p>
+
+
+</html>

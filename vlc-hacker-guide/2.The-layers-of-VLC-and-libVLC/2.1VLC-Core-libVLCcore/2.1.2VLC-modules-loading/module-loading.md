@@ -50,8 +50,4 @@ Menu -> Tools -> Plugins and extensions
 >15.text renderer: a way to display subtitles and other text on top of the video输出字幕以及其他文本信息. 
 >16.video filter: a video filter, like contrast adjusting视频过滤器 .  
 >17.visualization2: a visualizer, to create videos from the music可视化。        
-
-
-A
-A
 >18.vout display: a video output, to display videos like Direct3D or Xv   Direct3D or Xv的形式输出视频。  

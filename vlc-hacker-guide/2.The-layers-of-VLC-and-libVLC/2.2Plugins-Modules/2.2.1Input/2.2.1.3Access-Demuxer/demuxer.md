@@ -2,7 +2,7 @@ acess Demux访问多路分配器
 
 *  1:描述
 
-access_demux模块的设计用来处理访问和同一模块中的解复用阶段的第一部分。        
+access_demux模块的设计用来处理访问和同一模块中的解复用阶段的第一部分。   
 
 因此，你需要读取访问和多路分配器页面，然后再前往。
  
@@ -40,9 +40,9 @@ set_subcategory( SUBCAT_INPUT_ACCESS )
 
 原型：
 
-int (*pf_demux)  ( demux_t * );    
+int (*pf_demux)  ( demux_t * );
 
-Return：   
+Return
 
 当成功时候的一些积极的以及失败时候的一些消极的东西时，他应该返回0.
 

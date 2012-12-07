@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 #Vlc加载模块的方法
 
 *  1.模块的介绍

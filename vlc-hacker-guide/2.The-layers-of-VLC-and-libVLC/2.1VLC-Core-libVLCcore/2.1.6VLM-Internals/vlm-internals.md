@@ -1,4 +1,3 @@
-ls
 >1 介绍 
 >>VideoLAN控制的是一个小型的媒体管理器，控制多个数据流的VLC。它允许多个数据流和视频点播（VoD）。 VLM可以通过Telnet和HTTP接口文档控制VLC：Streaming_HowTo/ VLM。
 本文档将描述，VLM包括数据的结构和功能，以及libvlc绑定控制VLM的内部。  

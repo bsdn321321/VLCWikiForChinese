@@ -23,7 +23,7 @@ All ，none,and other speial tweaks
 >2.None意味着没有模块将被检测。    
 >任何模块都可以运行，利用它的别名。这个对0分模块有用。
 例如：
->模块要求可以被限制。例：   
+>模块要求可以被限制。例
 --codec avcodec,alltry the avcodec module than all modules as a "decoder"    
 --demux avformat,none try the avformat module and no other module       
 >模块请求默认是all 模式的，以及all模式也可以被删除。         

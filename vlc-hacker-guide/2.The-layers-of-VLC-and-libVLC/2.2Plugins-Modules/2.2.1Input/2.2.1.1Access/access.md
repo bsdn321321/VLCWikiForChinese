@@ -67,20 +67,4 @@ Return
 >>原型：      
 block_t    *(*pf_block)( access_t * );      
 Return       
-
-
-B
-B
-B
-B
-A
-A
-B
-B
-B
-B
-A
-A
-B
-B
 以‘natural’大小返回数据块，如果还没有数据或者eof它会返回null.为了区分数据和EOF之间没有，你应当设置为true的情况下，EOF p_access - > info.b_eof。

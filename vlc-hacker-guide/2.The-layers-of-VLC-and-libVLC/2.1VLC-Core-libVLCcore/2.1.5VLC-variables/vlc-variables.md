@@ -1,4 +1,6 @@
-媒体播放器有一个强大的“对象变量”的infrastructure，可用于模块之间的信息传递。它可以比作一个观察者模式.
+#介绍
+
+VLC媒体播放器有一个强大的“对象变量”的infrastructure，可用于模块之间的信息传递。它可以比作一个观察者模式.
 
 变量函数
 
@@ -48,7 +50,6 @@ var_CreateGet*函数将创建变量的默认值，如果该变量尚未建立。
       var_CreateGetNonEmptyStringCommand(a,b)
 
 一个变量必须被创建，如果你想添加一个回调或改变一个变量的值（与var_Set）
-
 
 
 

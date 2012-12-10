@@ -1,4 +1,10 @@
-cture_t  
+#视频输出
+
+##1.1 数据结构和主循环  
+
+数据框架主要存放在nclude/video.h和include/video_output.h 
+
+###1.1.1picture_t  
 
 主要的数据框架都存放在picture_t,描述了音频解码器所需要的一切，请参阅这些文件的详细信息。通常，P_DATA将是一个指向YUV平面图片。
 

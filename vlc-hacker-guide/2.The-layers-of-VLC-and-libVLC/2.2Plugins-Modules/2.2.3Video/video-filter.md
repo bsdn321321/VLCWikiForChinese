@@ -139,7 +139,9 @@ Video_format_t vs. Plane_t
 
      modules/video_filter/logo.c：在视频的头部进行图像的叠加。请注意，这也实现了​​picture_t的视频过滤器2的直接编译。所以这可能不是最简单的来源。如果你想采取这种方式，参考the deinterlace filter。
 
+
     modules/video_filter/marq.c：在视频的头部进行文本的叠加
+    
 
     modules/video_filter/rss.c：在视频的叠加一个来自于一个RSS stream的文本。这其中也包括图片元素。有时这使得它一个很好的例子去了解如何复合subpicture_t的元素。
 

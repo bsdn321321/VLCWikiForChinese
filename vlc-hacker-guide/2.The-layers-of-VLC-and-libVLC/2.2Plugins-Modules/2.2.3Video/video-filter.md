@@ -1,5 +1,6 @@
- #视频过滤器
- ##在源代码树中的位置，编译
+#视频过滤器
+
+##在源代码树中的位置，编译
 
  video filters的正确位置是在 modules/video_filter/ folder中。
  

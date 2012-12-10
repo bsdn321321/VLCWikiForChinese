@@ -1,4 +1,16 @@
- media player video filters通常是在C99上编写的，剩余的使用 C++，例如AtmoLight plugin.
+ #视频过滤器
+ ##在源代码树中的位置，编译
+
+ video filters的正确位置是在 modules/video_filter/ folder中。
+ 
+ ##说明
+ 
+
+在modules/video_filter/Modules.am看video filters在VLC中的列表。新的集成模块上提供更多的关于如何将一个新的模块构建系统的帮助。
+
+ 
+
+##编程惯例和技巧media player video filters通常是在C99上编写的，剩余的使用 C++，例如AtmoLight plugin.
 
 
 平常的东西在这里也拥有：

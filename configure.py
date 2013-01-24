@@ -17,5 +17,5 @@ for filename in filelist:
     file_make.write('\n\t@'+cmd1+';'+cmd2+';'+cmd3)
 #file_make.write('\n')
 
-file_make.write('\nclean:\n\tfind -name \'*.html\' -exec rm {} \\;')
+file_make.write('\nclean:\n\t@find -name \'*.html\' -exec rm {} \\;')
 
